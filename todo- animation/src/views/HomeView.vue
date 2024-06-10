@@ -11,8 +11,8 @@ function addTask () {
   }
 }
 
-function removeTask(task) {
-  tasks.value = tasks.value.filter((t) => t !== task)
+function removeTask(index) {
+  tasks.value.splice(index,1)
 }
 </script>
 
@@ -21,7 +21,7 @@ function removeTask(task) {
     <div class="container">
       <input type="text" v-model="newTask" @keyup.enter="addTask()" autofocus />
       <transition-group name="list">
-        <div class="card-list" v-for="(task,index) in tasks" :key="index" @click="removeTask(task)">{{ task }}</div>
+        <div class="card-list" v-for="(task,index) in tasks" :key="index" @click="removeTask(tasks.indexOf(task))">{{ task }}</div>
         </transition-group>
     </div>
   </main>
@@ -65,5 +65,25 @@ transform: scale(1);
 
 .list-enter-active{
 transition: all 0.5s ease;
+}
+
+
+.list-leave-from{
+opacity: 1;
+transform: scale(1);
+}
+
+.list-leave-to{
+opacity: 0;
+transform: scale(0);
+}
+
+.list-leave-active{
+transition: all 0.5s ease;
+position: absolute;
+}
+
+.list-move {
+  transition: all 0.5s ease;
 }
 </style>
