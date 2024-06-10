@@ -1,56 +1,43 @@
 <script setup>
 import { ref } from 'vue';
 
-const showText = ref(false)
+
 </script>
 
 <template>
   <main>
     <div class="container">
-      <transition name="fade">
-        <h1 v-if="showText">Hello World</h1>
-        <h1 v-else>GoodBye</h1>
-      </transition>
-      <button @click="showText = !showText">Toggle</button>
+      <input type="text" autofocus/>
+      <div class="card-list">Task 1</div>
+      <div class="card-list">Task 2</div>
+      <div class="card-list">Task 3</div>
     </div>
   </main>
 </template>
 
 <style scoped>
-
 .container {
-  position: relative;
+  max-width: 300px;
+  margin: 0 auto;
+
 }
 
-h1 {
-  position: absolute;
+.container input {
+  width: 100px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
 }
 
-button {
-  margin-top: 100px;
-}
-
-.fade-enter-from {
-  opacity: 0;
-}
-
-.fade-enter-to {
-  opacity: 1;  
-}
-
-.fade-enter-active {
-  transition: all 1s ease;
-}
-
-.fade-leave-from {
-  opacity: 1;  
-}
-
-.fade-leave-to {
-  opacity: 0;
-}
-
-.fade-leave-active {
-  transition: all 1s ease;
+.card-list {
+  width: 300px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  cursor: pointer;
 }
 </style>
