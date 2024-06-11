@@ -1,2 +1,6 @@
 jadi dalam sebuah animasi kita bisa menggunakannya dalam level javascript bukan hanya pada
 level CSS
+
+
+di sesi ini kita menginstal libray gsap untuk animasi pada level javascript
+dengan cara npm install gsap

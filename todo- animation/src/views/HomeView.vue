@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-
+import gsap from 'gsap'
 const tasks = ref(['Learn HTML','Learn CSS','Learn JavaScript'])
 const newTask = ref('')
 
@@ -15,11 +15,18 @@ function removeTask(index) {
   tasks.value.splice(index,1)
 }
 
-function beforeEnter () {
-  console.log('before enter')
+function beforeEnter (el) {
+  el.style.opacity = 0
+  el.style.transform = 'translateX(-30px)'
 }
-function enter () {
-  console.log('enter')
+function enter (el) {
+  gsap.to(el, {
+    opacity:1,
+    x:0,
+    duration:0.5,
+    delay:el.dataset.index * 0.3,
+
+  })
 }
 function afterEnter () {
   console.log('after enter')
@@ -43,7 +50,7 @@ function afterLeave () {
       @after-enter="afterEnter"
       @before-leave="beforeLeave"
       @after-leave="afterLeave">
-        <div class="card-list" v-for="(task,index) in tasks" :key="index" @click="removeTask(tasks.indexOf(task))">{{ task }}</div>
+        <div class="card-list" v-for="(task,index) in tasks" :key="index" :data-index="index" @click="removeTask(tasks.indexOf(task))">{{ task }}</div>
         </transition-group>
     </div>
   </main>
@@ -76,19 +83,19 @@ function afterLeave () {
   cursor: pointer;
 }
 
-.list-enter-from{
+/* .list-enter-from{
 opacity: 0;
 transform: scale(0.6);
-}
+} */
 
-.list-enter-to{
+/* .list-enter-to{
 opacity: 1;
 transform: scale(1);
-}
+} */
 
-.list-enter-active{
+/* .list-enter-active{
 transition: all 0.5s ease;
-}
+} */
 
 
 .list-leave-from{
