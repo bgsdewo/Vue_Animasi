@@ -39,6 +39,7 @@ function removeTask(index) {
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 10px;
+  margin-top: 20px;
   margin-bottom: 20px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
 }

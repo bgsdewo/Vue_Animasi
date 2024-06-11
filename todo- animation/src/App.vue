@@ -1,10 +1,18 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { RouterLink,RouterView } from 'vue-router'
 
 </script>
 
 <template>
-  <RouterView />
+  <div>
+    <header class="container">
+    <RouterLink to ='/'>Home</RouterLink>
+    <RouterLink to ='/about'>About</RouterLink>
+    </header>
+    <Transition name="route">
+    <RouterView />
+  </Transition>
+</div>
 </template>
 
 <style scoped>
@@ -12,7 +20,23 @@ header {
   line-height: 1.5;
   max-height: 100vh;
 }
+.container {
+  max-width: 300px;
+  margin: 0 auto;
+}
 
+.route-enter-from {
+  transform: translateX(-30px);
+  opacity: 0;
+}
+.route-enter-to {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.route-enter-active {
+  transition: all 0.3s ease;
+}
 .logo {
   display: block;
   margin: 0 auto 2rem;
