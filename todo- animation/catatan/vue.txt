@@ -1,0 +1,2 @@
+jadi dalam sebuah animasi kita bisa menggunakannya dalam level javascript bukan hanya pada
+level CSS

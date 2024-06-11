@@ -14,13 +14,35 @@ function addTask () {
 function removeTask(index) {
   tasks.value.splice(index,1)
 }
+
+function beforeEnter () {
+  console.log('before enter')
+}
+function enter () {
+  console.log('enter')
+}
+function afterEnter () {
+  console.log('after enter')
+}
+function beforeLeave () {
+  console.log('before leave')
+}
+
+function afterLeave () {
+  console.log('after leave')
+}
 </script>
 
 <template>
   <main>
     <div class="container">
       <input type="text" v-model="newTask" @keyup.enter="addTask()" autofocus />
-      <transition-group name="list">
+      <transition-group name="list" appear 
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @before-leave="beforeLeave"
+      @after-leave="afterLeave">
         <div class="card-list" v-for="(task,index) in tasks" :key="index" @click="removeTask(tasks.indexOf(task))">{{ task }}</div>
         </transition-group>
     </div>
